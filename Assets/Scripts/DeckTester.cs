@@ -5,6 +5,7 @@ using UnityEngine;
 public class DeckTester : MonoBehaviour
 {
     [SerializeField] List<AbilityCardData> _abilityDeckConfig = new List<AbilityCardData>();
+    [SerializeField] AbilityCardView _abilityCardView = null;
     Deck<AbilityCard> _abilityDeck = new Deck<AbilityCard>();
     Deck<AbilityCard> _abilityDiscard = new Deck<AbilityCard>();
 
@@ -32,10 +33,6 @@ public class DeckTester : MonoBehaviour
         {
             Draw();
         }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            PrintPlayerHand();
-        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             PlayTopCard();
@@ -47,6 +44,8 @@ public class DeckTester : MonoBehaviour
         AbilityCard newCard = _abilityDeck.Draw(DeckPosition.Top);
         Debug.Log("Drew card: " + newCard.Name);
         _playerHand.Add(newCard, DeckPosition.Top);
+
+        _abilityCardView.Display(newCard);
     }
 
     private void PrintPlayerHand()
@@ -65,5 +64,17 @@ public class DeckTester : MonoBehaviour
         _playerHand.Remove(_playerHand.LastIndex);
         _abilityDiscard.Add(targetCard);
         Debug.Log("Card added to discard: " + targetCard.Name);
+
+        if (_abilityDeck.Count == 0)
+        {
+            Debug.Log("Shuffling cards...");
+            foreach (AbilityCardData abilityData in _abilityDeckConfig)
+            {
+                AbilityCard newAbilityCard = new AbilityCard(abilityData);
+                _abilityDeck.Add(newAbilityCard);
+            }
+
+            _abilityDeck.Shuffle();
+        }
     }
 }
