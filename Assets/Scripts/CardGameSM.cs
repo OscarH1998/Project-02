@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class CardGameSM : StateMachine
 {
+    [SerializeField] InputController _input;
+    public InputController Input => _input;
+
     void Start()
     {
-        //set the starting state here
+        ChangeState<SetupCardGameState>();
     }
 }

@@ -717,7 +717,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bd68dba1b8d278d4d8df2fe98e93d628, type: 2}
   - {fileID: 11400000, guid: bd68dba1b8d278d4d8df2fe98e93d628, type: 2}
   - {fileID: 11400000, guid: bd68dba1b8d278d4d8df2fe98e93d628, type: 2}
-  _abilityCardView: {fileID: 0}
+  _abilityCardView: {fileID: 507402418}
 --- !u!1 &1421765613
 GameObject:
   m_ObjectHideFlags: 0
