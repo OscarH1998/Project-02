@@ -34,8 +34,5 @@ public class EnemyTurnCardGameState : CardGameState
         StateMachine.ChangeState<PlayerTurnCardGameState>();
     }
 
-    void OnPressedConfirm()
-    {
-        StateMachine.ChangeState<EnemyTurnCardGameState>();
-    }
+
 }
