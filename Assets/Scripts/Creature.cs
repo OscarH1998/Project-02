@@ -6,6 +6,7 @@ using UnityEngine;
 public class Creature : MonoBehaviour, ITargetable, IDamageable
 {
     int _currentHealth = 10;
+    bool _targeted = false;
 
     public void Kill()
     {
@@ -25,5 +26,6 @@ public class Creature : MonoBehaviour, ITargetable, IDamageable
     public void Target()
     {
         Debug.Log("Creature has been targeted.");
+        _targeted = true;
     }
 }

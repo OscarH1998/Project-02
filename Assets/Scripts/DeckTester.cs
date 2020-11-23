@@ -27,19 +27,7 @@ public class DeckTester : MonoBehaviour
         _abilityDeck.Shuffle();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Draw();
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PlayTopCard();
-        }
-    }
-
-    private void Draw()
+    public void Draw()
     {
         AbilityCard newCard = _abilityDeck.Draw(DeckPosition.Top);
         Debug.Log("Drew card: " + newCard.Name);
@@ -56,7 +44,7 @@ public class DeckTester : MonoBehaviour
         }
     }
 
-    void PlayTopCard()
+    public void PlayTopCard()
     {
         AbilityCard targetCard = _playerHand.TopItem;
         targetCard.Play();

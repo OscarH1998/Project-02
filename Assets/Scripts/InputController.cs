@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class InputController : MonoBehaviour
 {
@@ -10,13 +11,7 @@ public class InputController : MonoBehaviour
     public event Action PressedLeft = delegate { };
     public event Action PressedRight = delegate { };
 
-    void Update()
-    {
-        DetectConfirm();
-        DetectCancel();
-        DetectLeft();
-        DetectRight();
-    }
+    public Button PlayCardButton;
 
     private void DetectRight()
     {
@@ -41,12 +36,14 @@ public class InputController : MonoBehaviour
             PressedCancel?.Invoke();
         }
     }
-   
-    private void DetectConfirm()
+
+    void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PressedConfirm?.Invoke();
-        }
+        PlayCardButton.onClick.AddListener(DetectConfirm);
+    }
+   
+    void DetectConfirm()
+    {
+        PressedConfirm?.Invoke();
     }
 }

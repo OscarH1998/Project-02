@@ -8,6 +8,8 @@ public class EnemyTurnCardGameState : CardGameState
     public static event Action EnemyTurnBegan;
     public static event Action EnemyTurnEnded;
 
+    [SerializeField] Health _player = null;
+
     [SerializeField] float _pauseDuration = 1.5f;
 
     public override void Enter()
@@ -29,6 +31,7 @@ public class EnemyTurnCardGameState : CardGameState
         yield return new WaitForSeconds(pauseDuration);
 
         Debug.Log("Enemy performs action");
+        _player.TakeDamage(3);
         EnemyTurnEnded?.Invoke();
 
         StateMachine.ChangeState<PlayerTurnCardGameState>();
