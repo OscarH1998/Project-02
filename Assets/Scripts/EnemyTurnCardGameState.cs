@@ -10,10 +10,17 @@ public class EnemyTurnCardGameState : CardGameState
 
     [SerializeField] Health _player = null;
 
+    public AudioSource Monkey = null;
+
+    public Creature _health = null;
+
     [SerializeField] float _pauseDuration = 1.5f;
+    [SerializeField] GameObject PlayerDamage = null;
 
     public override void Enter()
     {
+
+        Monkey.Play();
         Debug.Log("Enemy Turn: ...Enter");
         EnemyTurnBegan?.Invoke();
 
@@ -30,7 +37,7 @@ public class EnemyTurnCardGameState : CardGameState
         Debug.Log("Enemy thinking...");
         yield return new WaitForSeconds(pauseDuration);
 
-        Debug.Log("Enemy performs action");
+        Debug.Log("Enemy swipes at the player for 3 damage");
         _player.TakeDamage(3);
         EnemyTurnEnded?.Invoke();
 

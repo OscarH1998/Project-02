@@ -11,6 +11,18 @@ public class ButtonUI : MonoBehaviour
     public Button _playTopCard;
     public Button _drawCard;
 
+    public GameObject SaveConfirm = null;
+    public GameObject LoadConfirm = null;
+    public GameObject QuitConfirm = null;
+
+
+    public void Awake()
+    {
+        SaveConfirm.SetActive(false);
+        LoadConfirm.SetActive(false);
+        QuitConfirm.SetActive(false);
+    }
+
     void Start()
     {
         Button btn1 = _playTopCard.GetComponent<Button>();

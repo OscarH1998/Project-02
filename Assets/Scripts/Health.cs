@@ -11,6 +11,8 @@ public class Health : MonoBehaviour
 
     [SerializeField] AudioSource PlayerDamaged = null;
 
+
+
     public GameObject GameOverScreen = null;
     public GameObject Button1 = null;
     public GameObject Button2 = null;
@@ -26,7 +28,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-  
+
         currentHealth -= damage;
         HealthChanged.Invoke(currentHealth);
         Debug.Log("Current Health: " + currentHealth);
@@ -56,7 +58,7 @@ public class Health : MonoBehaviour
     }
 
     public void GameOver()
-    {
+    { 
         GameOverScreen.SetActive(true);
         GameOverBlock.SetActive(true);
         Button1.SetActive(false);

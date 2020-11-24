@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Creature : MonoBehaviour, ITargetable, IDamageable
 {
-    int _currentHealth = 10;
+    public int _currentHealth = 10;
     bool _targeted = false;
 
     public GameObject YouWinScreen = null;

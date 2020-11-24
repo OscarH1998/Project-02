@@ -11,6 +11,7 @@ public class PlayerTurnCardGameState : CardGameState
 
     public override void Enter()
     {
+        
         Debug.Log("Player Turn: ...Entering");
         _playerTurnTextUI.gameObject.SetActive(true);
 
