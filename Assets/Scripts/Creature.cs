@@ -8,10 +8,23 @@ public class Creature : MonoBehaviour, ITargetable, IDamageable
     int _currentHealth = 10;
     bool _targeted = false;
 
+    public GameObject YouWinScreen = null;
+    public GameObject GameOverBlock = null;
+    public GameObject Body = null;
+
+    public void Awake()
+    {
+        YouWinScreen.SetActive(false);
+        GameOverBlock.SetActive(false);
+        Body.SetActive(true);
+    }
+
     public void Kill()
     {
         Debug.Log("Kill the creature!");
-        gameObject.SetActive(false);
+        YouWinScreen.SetActive(true);
+        GameOverBlock.SetActive(true);
+        Body.SetActive(false);
     }
 
     public void TakeDamage(int damage)

@@ -11,7 +11,18 @@ public class Health : MonoBehaviour
 
     [SerializeField] AudioSource PlayerDamaged = null;
 
+    public GameObject GameOverScreen = null;
+    public GameObject Button1 = null;
+    public GameObject Button2 = null;
+    public GameObject GameOverBlock = null;
+
     public event Action<int> HealthChanged = delegate { };
+
+    public void Awake()
+    {
+        GameOverScreen.SetActive(false);
+        GameOverBlock.SetActive(false);
+    }
 
     public void TakeDamage(int damage)
     {
@@ -19,19 +30,36 @@ public class Health : MonoBehaviour
         currentHealth -= damage;
         HealthChanged.Invoke(currentHealth);
         Debug.Log("Current Health: " + currentHealth);
-        //PlayerDamaged.Play();
+        PlayerDamaged.Play();
         if (currentHealth <= 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameOver();
         }
     }
-    
-    public void Update()
+
+    public void SavePlayer()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            TakeDamage(3);
-            Debug.Log("Current Health: " + currentHealth);
-        }
+        SaveSystem.SavePlayer(this);
     }
+
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        currentHealth = data.health;
+        HealthChanged.Invoke(currentHealth);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void GameOver()
+    {
+        GameOverScreen.SetActive(true);
+        GameOverBlock.SetActive(true);
+        Button1.SetActive(false);
+        Button2.SetActive(false);
+    } 
 }

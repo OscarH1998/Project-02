@@ -11,6 +11,9 @@ public class DeckTester : MonoBehaviour
 
     Deck<AbilityCard> _playerHand = new Deck<AbilityCard>();
 
+    [SerializeField] AudioSource DrawCard = null;
+    [SerializeField] AudioSource ShuffleCard = null;
+
     private void Start()
     {
         SetupAbilityDeck();
@@ -34,6 +37,7 @@ public class DeckTester : MonoBehaviour
         _playerHand.Add(newCard, DeckPosition.Top);
 
         _abilityCardView.Display(newCard);
+        DrawCard.Play();
     }
 
     private void PrintPlayerHand()
@@ -63,6 +67,7 @@ public class DeckTester : MonoBehaviour
             }
 
             _abilityDeck.Shuffle();
+            ShuffleCard.Play();
         }
     }
 }
